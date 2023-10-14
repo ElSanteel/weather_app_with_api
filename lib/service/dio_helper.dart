@@ -5,7 +5,7 @@ class DioHelper {
 
   //TODO :: BaseURL
   static init() {
-    String baseUrl = 'https://api.keddily.com/';
+    String baseUrl = 'http://api.weatherapi.com/v1';
 
     dio = Dio(
       BaseOptions(

@@ -20,7 +20,7 @@ class WeatherCubit extends Cubit<WeatherState> {
     emit(GetWeatherDataLoadingState());
     DioHelper.getData(
             url:
-                "https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=2d48b1d7080d09ea964e645ccd1ec93f&units=metric")
+                "https://api.weatherapi.com/v1/forecast.json?key=22f30be68e4248e79ed172857231410&q=Cairo&days=5")
         .then((value) {
       var jsonData = jsonDecode(value.data);
       weatherModel = WeatherModel.fromJson(jsonData);
@@ -31,3 +31,18 @@ class WeatherCubit extends Cubit<WeatherState> {
     });
   }
 }
+
+/*
+WeatherModel
+Location
+Current
+Condition
+Forecast
+Forecastday
+Day
+Astro
+Hour
+ */
+/*
+https://api.weatherapi.com/v1/forecast.json?key=22f30be68e4248e79ed172857231410&q=Cairo&days=5
+ */

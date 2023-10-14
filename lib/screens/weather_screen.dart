@@ -29,6 +29,7 @@ class WeatherScreen extends StatelessWidget {
                   "assets/images/background.png",
                   width: SizeConfig.screenWidth! * 1,
                   height: SizeConfig.screenHeight! * 1,
+                  fit: BoxFit.fill,
                 ),
                 Positioned(
                   left: 350,
@@ -52,16 +53,19 @@ class WeatherScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       CustomText(
-                        content: "Today, May 7th, 2021",
+                        content:
+                            "Today, ${cubit.weatherModel?.location?.localtime}",
                         size: 14,
                         textColor: Colors.white,
                       ),
                       CustomText(
-                          content: "Barcelona",
+                          content: "${cubit.weatherModel?.location?.name}",
                           size: 40,
                           textColor: Colors.white),
                       CustomText(
-                          content: "Spain", size: 20, textColor: Colors.white),
+                          content: "${cubit.weatherModel?.location?.country}",
+                          size: 20,
+                          textColor: Colors.white),
                       const SizedBox(
                         height: 20,
                       ),
@@ -70,10 +74,12 @@ class WeatherScreen extends StatelessWidget {
                         backgroundColor: Colors.white,
                         child: Column(
                           children: [
-                            Image.asset("assets/images/rainy.png"),
+                            // Image.network(
+                            //     "${cubit.weatherModel?.current?.condition?.icon}"),
                             CustomText(
-                                content: "10'C",
-                                size: 100,
+                                content:
+                                    "${cubit.weatherModel?.current?.tempC}°C",
+                                size: 60,
                                 textColor: Colors.black)
                           ],
                         ),
@@ -83,7 +89,8 @@ class WeatherScreen extends StatelessWidget {
                         children: [
                           BuildColumn(
                             text1: "Wind status",
-                            text2: "7 mph",
+                            text2:
+                                "${cubit.weatherModel?.current?.windMph?.toInt()}",
                             isBold1: true,
                           ),
                           const SizedBox(
@@ -91,7 +98,8 @@ class WeatherScreen extends StatelessWidget {
                           ),
                           BuildColumn(
                             text1: "Visibility",
-                            text2: "6.4 miles",
+                            text2:
+                                "${cubit.weatherModel?.current?.visMiles?.toInt()}",
                             isBold1: true,
                           )
                         ],
@@ -102,8 +110,9 @@ class WeatherScreen extends StatelessWidget {
                       Row(
                         children: [
                           BuildColumn(
-                            text1: "Humadity",
-                            text2: "85%",
+                            text1: "Humidity",
+                            text2:
+                                "${cubit.weatherModel?.current?.humidity?.toInt()}%",
                             isBold1: true,
                           ),
                           const SizedBox(
@@ -111,7 +120,8 @@ class WeatherScreen extends StatelessWidget {
                           ),
                           BuildColumn(
                             text1: "Air pressure",
-                            text2: "998 mb",
+                            text2:
+                                "${cubit.weatherModel?.current?.pressureMb?.toInt()}",
                             isBold1: true,
                           ),
                         ],

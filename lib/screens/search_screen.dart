@@ -15,6 +15,7 @@ class SearchScreen extends StatelessWidget {
             "assets/images/background.png",
             width: SizeConfig.screenWidth! * 1,
             height: SizeConfig.screenHeight! * 1,
+            fit: BoxFit.fill,
           ),
           Positioned(
             top: 100,
