@@ -31,18 +31,3 @@ class WeatherCubit extends Cubit<WeatherState> {
     });
   }
 }
-
-/*
-WeatherModel
-Location
-Current
-Condition
-Forecast
-Forecastday
-Day
-Astro
-Hour
- */
-/*
-https://api.weatherapi.com/v1/forecast.json?key=22f30be68e4248e79ed172857231410&q=Cairo&days=5
- */

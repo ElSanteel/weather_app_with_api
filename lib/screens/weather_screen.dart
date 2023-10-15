@@ -74,9 +74,12 @@ class WeatherScreen extends StatelessWidget {
                         backgroundColor: Colors.white,
                         child: Column(
                           children: [
-                            // Image.network(
-                            //     "${cubit.weatherModel!.current!.condition!.icon}"),
-                            Image.asset("assets/images/rainy.png"),
+                            Image.network(
+                              "https:${cubit.weatherModel!.current!.condition!.icon}",
+                              width: 100,
+                              height: 100,
+                            ),
+                            // Image.asset("assets/images/rainy.png"),
                             CustomText(
                                 content:
                                     "${cubit.weatherModel!.current!.tempC}°C",
