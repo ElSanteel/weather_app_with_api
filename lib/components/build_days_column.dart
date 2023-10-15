@@ -4,12 +4,12 @@ import 'custom_text.dart';
 
 class BuildDaysColumn extends StatelessWidget {
   String dayName;
-  String imageName;
+  String? urlIcon;
   String temperature;
   BuildDaysColumn(
       {required this.dayName,
-      required this.imageName,
       required this.temperature,
+      this.urlIcon,
       super.key});
 
   @override
@@ -20,7 +20,7 @@ class BuildDaysColumn extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(10),
           width: 70,
-          height: 75,
+          height: 90,
           decoration: BoxDecoration(
               border: Border.all(
                 width: 2,
@@ -28,9 +28,11 @@ class BuildDaysColumn extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(20)),
           child: Column(children: [
-            Image.asset("assets/images/$imageName.png"),
+            urlIcon != null
+                ? Image.network("https:${urlIcon!}")
+                : Image.asset("assets/images/cloudy.png"),
             const SizedBox(
-              height: 10,
+              height: 5,
             ),
             CustomText(
                 content: "$temperature'C", size: 13, textColor: Colors.black)

@@ -54,16 +54,16 @@ class WeatherScreen extends StatelessWidget {
                     children: [
                       CustomText(
                         content:
-                            "Today, ${cubit.weatherModel?.location?.localtime}",
+                            "Today, ${cubit.weatherModel?.location?.localtime ?? ''}",
                         size: 14,
                         textColor: Colors.white,
                       ),
                       CustomText(
-                          content: "${cubit.weatherModel?.location?.name}",
+                          content: "${cubit.weatherModel!.location!.name}",
                           size: 40,
                           textColor: Colors.white),
                       CustomText(
-                          content: "${cubit.weatherModel?.location?.country}",
+                          content: "${cubit.weatherModel!.location!.country}",
                           size: 20,
                           textColor: Colors.white),
                       const SizedBox(
@@ -75,10 +75,11 @@ class WeatherScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             // Image.network(
-                            //     "${cubit.weatherModel?.current?.condition?.icon}"),
+                            //     "${cubit.weatherModel!.current!.condition!.icon}"),
+                            Image.asset("assets/images/rainy.png"),
                             CustomText(
                                 content:
-                                    "${cubit.weatherModel?.current?.tempC}°C",
+                                    "${cubit.weatherModel!.current!.tempC}°C",
                                 size: 60,
                                 textColor: Colors.black)
                           ],
@@ -89,8 +90,7 @@ class WeatherScreen extends StatelessWidget {
                         children: [
                           BuildColumn(
                             text1: "Wind status",
-                            text2:
-                                "${cubit.weatherModel?.current?.windMph?.toInt()}",
+                            text2: "${cubit.weatherModel!.current!.windMph}",
                             isBold1: true,
                           ),
                           const SizedBox(
@@ -98,8 +98,7 @@ class WeatherScreen extends StatelessWidget {
                           ),
                           BuildColumn(
                             text1: "Visibility",
-                            text2:
-                                "${cubit.weatherModel?.current?.visMiles?.toInt()}",
+                            text2: "${cubit.weatherModel!.current!.visMiles}",
                             isBold1: true,
                           )
                         ],
@@ -111,8 +110,7 @@ class WeatherScreen extends StatelessWidget {
                         children: [
                           BuildColumn(
                             text1: "Humidity",
-                            text2:
-                                "${cubit.weatherModel?.current?.humidity?.toInt()}%",
+                            text2: "${cubit.weatherModel!.current!.humidity}%",
                             isBold1: true,
                           ),
                           const SizedBox(
@@ -120,8 +118,7 @@ class WeatherScreen extends StatelessWidget {
                           ),
                           BuildColumn(
                             text1: "Air pressure",
-                            text2:
-                                "${cubit.weatherModel?.current?.pressureMb?.toInt()}",
+                            text2: "${cubit.weatherModel!.current!.pressureMb}",
                             isBold1: true,
                           ),
                         ],
@@ -147,30 +144,42 @@ class WeatherScreen extends StatelessWidget {
                                 )
                               ],
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(
+                              height: 15,
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 BuildDaysColumn(
+                                    urlIcon: cubit.weatherModel?.forecast
+                                        ?.forecastday?[0].day?.condition?.icon,
                                     dayName: "Sunday",
-                                    imageName: "cold",
-                                    temperature: "10"),
+                                    temperature:
+                                        "${cubit.weatherModel?.forecast?.forecastday?[0].day?.avgtempC}"),
                                 BuildDaysColumn(
+                                    urlIcon: cubit.weatherModel?.forecast
+                                        ?.forecastday?[1].day?.condition?.icon,
                                     dayName: "Monday",
-                                    imageName: "very_rainy",
-                                    temperature: "8"),
+                                    temperature:
+                                        "${cubit.weatherModel?.forecast?.forecastday?[1].day?.avgtempC}"),
                                 BuildDaysColumn(
                                     dayName: "Tuesday",
-                                    imageName: "cold_drop",
-                                    temperature: "3"),
+                                    urlIcon: cubit.weatherModel?.forecast
+                                        ?.forecastday?[2].day?.condition?.icon,
+                                    temperature:
+                                        "${cubit.weatherModel?.forecast?.forecastday?[2].day?.avgtempC}"),
                                 BuildDaysColumn(
                                     dayName: "Thursday",
-                                    imageName: "lighting",
-                                    temperature: "5"),
+                                    urlIcon: cubit.weatherModel?.forecast
+                                        ?.forecastday?[3].day?.condition?.icon,
+                                    temperature:
+                                        "${cubit.weatherModel?.forecast?.forecastday?[3].day?.avgtempC}"),
                                 BuildDaysColumn(
                                     dayName: "Friday",
-                                    imageName: "cloudy",
-                                    temperature: "9")
+                                    urlIcon: cubit.weatherModel?.forecast
+                                        ?.forecastday?[4].day?.condition?.icon,
+                                    temperature:
+                                        "${cubit.weatherModel?.forecast?.forecastday?[4].day?.avgtempC}")
                               ],
                             ),
                           ]),
